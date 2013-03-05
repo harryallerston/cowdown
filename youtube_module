@@ -1,0 +1,79 @@
+#!/bin/bash
+
+##################################################################
+##### SCRIPT TO DOWNLOAD YOUTUBE VIDEOS AND CONVERT TO MPG #######
+##############   Dependencies: ffmpeg youtube-dl  ################
+#################      Harry Allerston 2013    ###################
+##################################################################
+
+
+######################## Supported sites: ########################
+#youtube	metacafe	dailymotion	video.google
+#photobucket	video.yahoo	DepositFiles	facebook
+#blip.tv	vimeo	myvideo	comedycentral	escapist
+#collegehumor	xvideos	soundcloud	infoq	mixcloud
+#stanfordoc	mtv
+###################################################################
+
+# attempt to get and install dependencies
+
+clear
+
+if which cowsay ffmpeg youtube-dl>/dev/null; then
+    echo " "
+else
+    echo "....There seem to be some unmet dependencies... please enter your password..."
+    sleep 4
+    clear
+    sudo apt-get install -y -qq cowsay ffmpeg youtube-dl
+   
+# sudo pacman -S cowsay ffmpeg youtube-dl
+   # sudo yum install cowsay ffmpeg youtube-dl
+fi
+
+clear
+
+####### Set default save location (edit appropriately) #######
+
+#SAVE="/home/harry"
+
+#### navigate to default folder #######
+
+cd $HOME
+
+##### ask for video link ######
+
+#cowsay "Hello! I'm Mr. Cow and I love piracy. Now let's steal some videos"
+sleep 4
+clear
+cowsay "URL to download from?"
+read URL
+clear
+
+##### set filename ########
+
+cowsay "save as?"
+read MPG
+clear
+
+##### download flv to default location and parse filename #######
+
+youtube-dl $URL
+FLV=$(youtube-dl --get-filename $URL)
+
+#### Convert .flv to .mpg #######
+
+ffmpeg -i $FLV "$MPG".mpg
+clear
+
+###### clean up and finish #####
+
+rm $FLV
+
+clear
+
+cowsay "Done! Enjoy your video in the full knowledge that you paid for nothing!"
+sleep 5
+clear
+
+##################################################################

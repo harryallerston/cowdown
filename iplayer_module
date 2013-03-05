@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#####  Searches, streams and downloads videos from iPlayer  ##########
+
+
+################### Check for and install dependencies ###############
+
+clear
+
+if which cowsay get-iplayer>/dev/null; then
+    echo " "
+else
+    echo "....There seem to be some unmet dependencies... please enter your password..."
+    echo "                          This only needs doing once!                        "
+    sleep 4
+    clear
+    sudo apt-get install -y -qq cowsay get-iplayer
+fi
+
+clear
+
+####################### Set video to search for ######################
+get-iplayer
+clear
+cowsay "what programme do you want to search for?"
+read SEARCH
+clear
+
+########################### Search for it ############################
+
+cowsay "type in the id number of the programme you want"
+echo " "
+echo " "
+get-iplayer "$SEARCH"
+echo " "
+echo " "
+echo " "
+echo " "
+echo "ID Number?:"
+read ID
+clear
+
+#################### Set Save location ################################
+
+while true; do
+    read -p "Would you like to stream the file instead of downloading? y/n   " yn
+    case $yn in
+        [Yy]* ) get_iplayer --stream $ID --player="mplayer -cache 3072 -"; exit ;;
+        [Nn]* ) get-iplayer --force --get $ID --output $HOME --tvmode=flashhd,flashvhigh; exit ;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+cowsay "All Done!"
+sleep 
+clear
+
+#################### END #############################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

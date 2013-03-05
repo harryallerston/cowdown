@@ -1,0 +1,20 @@
+#!/bin/bash
+
+clear
+
+while true; do
+	cowsay "Hello! I'm Mr. Cow and I love piracy..b Now let's steal 	some videos!"
+	sleep 3
+	clear 
+cowsay "Would you like to get video from iPlayer (1) or youtube? (2)"  
+ read yn
+    case $yn in
+###################################################################       
+ 	[1]* ) chmod +x iplayer_module; exec ./iplayer_module; exit ;;
+       
+##################################################################
+ 	[2]* ) chmod +x youtube_module; exec ./youtube_module; exit ;;
+        * ) echo "Please answer 1 or 2.";;
+    esac
+done
+
