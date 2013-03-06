@@ -1,5 +1,5 @@
-Cowdown: A Simple frontend to get_iplayer and youtube_dl, supporting both 
-streaming and downloading of media content. 
+Cowdown: A silly bovine themed frontend for downloading and streaming media from the internet. 
+Currently supports both get-iplayer and youtube-dl functions and streaming via mplayer
 
 USAGE:
 ======
