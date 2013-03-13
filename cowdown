@@ -1,6 +1,22 @@
 #!/bin/bash
 
+################### Check for and install dependencies ###############
+
 clear
+
+if which cowsay >/dev/null; then
+echo " "
+else
+echo "....There seem to be some unmet dependencies... please enter your password..."
+    echo " This only needs doing once! "
+    sleep 4
+    clear
+    sudo apt-get install -y -qq cowsay 
+fi
+
+clear
+
+######################## Start UI ###################################
 
 while true; do
 	cowsay "let's steal some videos!"
