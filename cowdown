@@ -9,8 +9,6 @@ echo " "
 else
 echo "....There seem to be some unmet dependencies... please enter your password..."
     echo " This only needs doing once! "
-    sleep 4
-    clear
     sudo apt-get install -y -qq cowsay 
 fi
 
